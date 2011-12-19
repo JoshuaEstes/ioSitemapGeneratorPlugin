@@ -1,0 +1,26 @@
+all:
+  ioSitemapGenerator:
+    sf_host: http://www.example.com
+    urls:
+      -
+        route: homepage
+        changefreq: daily
+        priority: 1.0
+    models:
+      -
+        model: Category
+        route: category_show
+        # always
+        # hourly
+        # daily
+        # weekly
+        # monthly
+        # yearly
+        # never
+        changefreq: monthly
+        priority: 0.5
+      -
+        model: BlogPost
+        route: blog_post_show
+        changefreq: weekly
+        priority: 0.5

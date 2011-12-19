@@ -1,0 +1,96 @@
+ioSitemapGeneratorPlugin
+========================
+
+This plugin is used to generate sitemaps for various websites
+
+Requirements
+------------
+
+* sfDoctrinePlugin
+* DOM extension for php (http://us2.php.net/manual/en/book.dom.php)
+
+Installation
+------------
+
+    git submodule add REPO_URL plugins/ioSitemapGeneratorPlugin
+
+Now open your ProjectConfiguration.class.php
+
+    // config/ProjectConfiguration.class.php
+    ...
+      $this->enablePlugins(array(
+        ...
+        'ioSitemapGeneratorPlugin',
+        ...
+      ));
+    ...
+
+Configuration
+-------------
+
+Set the configuration options in the app.yml. You must have the routes setup in
+your routing.yml. You will need to set what host you want as well as setup what
+urls and models you want included in the sitemap.xml. changefreq and priority are
+both optional.
+
+Setting your host
+^^^^^^^^^^^^^^^^^
+
+    # apps/frontend/config/app.yml
+    all:
+      ioSitemapGenerator:
+        sf_host: http://www.iostudio.com
+
+Adding URLs
+^^^^^^^^^^^
+
+Urls are pages that are not tied to any model.
+
+    # apps/frontend/config/app.yml
+    all:
+      ioSitemapGenerator:
+        urls:
+          -
+            route: homepage
+            changefreq: daily
+            priority: 1.0
+          -
+            route: about
+            changefreq: monthly
+            priority: 1.0
+
+*route* is the name of the route in your routing.yml file. *changefreq* is the
+frequency in how much the page changes, see the sitemaps.org site. *priority*
+is on a scale of 0.0 to 1.0.
+
+Adding Doctrine Routes
+^^^^^^^^^^^^^^^^^^^^^^
+
+    # apps/frontend/config/app.yml
+    all:
+      ioSitemapGenerator:
+        models:
+          -
+            model: BlogPost
+            route: blog_post_show
+            changefreq: weekly
+            priority: 0.5
+          -
+            model: BlogTag
+            route: blog_tag_show
+            changefreq: weekly
+            priority: 0.5
+
+*model* is what model the route is based on. *route* must be defined in your
+routing.yml file. *changefreq* is the frequency of how much the page updates.
+*priority* is a scale of 0.0 to 1.0 of how important the page is.
+
+NOTE: If the model has the column updated_at (ie actAs Timestampable) then it
+will place this in the sitemap file automatically. To disable this feature you
+can just add *include_lastmod: false* when defining the models.
+
+References
+----------
+
+  * http://www.sitemaps.org
+  * http://www.sitemaps.org/protocol.html#xmlTagDefinitions
