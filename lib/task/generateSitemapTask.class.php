@@ -29,10 +29,15 @@ class generateSitemapTask extends sfBaseTask
     $this->name = 'sitemap';
     $this->briefDescription = 'Generates a sitemap';
     $this->detailedDescription = <<<EOF
-The [generate:sitemap|INFO] task does things.
+The [generate:sitemap|INFO] generates a sitemap.xml file for your site.
 Call it with:
 
   [php symfony generate:sitemap|INFO]
+
+To use a different sf_host, run the task with the sf_host option.
+
+  [php symfony generate:sitemap --sf_host=http://iostudio.com|INFO]
+
 EOF;
   }
 
