@@ -1,7 +1,9 @@
 ioSitemapGeneratorPlugin
 ========================
 
-This plugin is used to generate sitemaps for various websites
+This plugin is used to generate sitemaps for any of your symfony web sites. Once
+installed and configured, just run the task generate:sitemap and this task will
+create a sitemap.xml in symfony's web directory.
 
 Requirements
 ------------
