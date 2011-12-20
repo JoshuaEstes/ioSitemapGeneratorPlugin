@@ -43,6 +43,12 @@ Setting your host
       ioSitemapGenerator:
         sf_host: http://www.iostudio.com
 
+The reason you must set your host here is because without an incoming request,
+symfony does not know that the website is.
+
+NOTE: The same thing can be accomplished using the routing factory, however
+we felt that doing it this way was a better solution.
+
 Adding URLs
 ^^^^^^^^^^^
 
@@ -90,6 +96,17 @@ routing.yml file. *changefreq* is the frequency of how much the page updates.
 NOTE: If the model has the column updated_at (ie actAs Timestampable) then it
 will place this in the sitemap file automatically. To disable this feature you
 can just add *include_lastmod: false* when defining the models.
+
+Tasks
+-----
+
+This plugin only comes with one task.
+
+generate:sitemap
+^^^^^^^^^^^^^^^^
+
+Running this task will create a sitemap.xml file in the symfony web directory. For
+more help about this task, just run ./symfony help generate:sitemap
 
 References
 ----------
